@@ -4,6 +4,13 @@ body {
     margin: 0; /* ブラウザのデフォルトマージンをリセット */
     padding: 0; /* ブラウザのデフォルトパディングをリセット */
     overflow-y: scroll; /* これを追加：縦方向のスクロールバーを常に表示 */
+     visibility: hidden; /* body内のコンテンツを初期状態で非表示にする */
+    opacity: 0;       /* 初期状態で透明にする */
+    transition: opacity 0.5s ease-in-out; /* フェードインのアニメーション */
+}
+body.visible {
+    visibility: visible; /* コンテンツを表示可能にする */
+    opacity: 1;          /* フェードインで表示 */
 }
 
 /* ★ここから追加 */

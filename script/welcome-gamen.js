@@ -1,29 +1,45 @@
-// script/welcome-gamen.js
+// js/welcome.js
 
 document.addEventListener('DOMContentLoaded', () => {
     const welcomeOverlay = document.getElementById('welcome-overlay');
-    const hasVisited = localStorage.getItem('hasVisitedHomePage'); // LocalStorageから訪問履歴を取得
+    const body = document.body;
+    const hasVisited = localStorage.getItem('hasVisitedHomePage');
 
-    // 初めての訪問時のみオーバーレイを表示
+    // ★まず、ページの本体を初期表示する
+    // この行は、if/elseの外に置き、常に実行されるようにする
+    // ただし、初回訪問時はwelcomeOverlayが完全に消えた後に実行したいので、少しロジックを変更します。
+
     if (!hasVisited) {
-        // オーバーレイを表示したことをLocalStorageに保存
+        // 初回訪問の場合
+        // オーバーレイはHTMLで最初から表示されている状態なので、そのまま表示
+        // bodyはCSSで非表示になっているが、初回訪問時はオーバーレイがあるのでまだvisibleにしない
+
         localStorage.setItem('hasVisitedHomePage', 'true');
 
-        // 数秒後にフェードアウトして非表示にする
+        const welcomeDisplayDuration = 2000; // 「ようこそ」表示時間
+        const overlayFadeDuration = 1000;    // オーバーレイのフェードアウト時間
+
+        // 「ようこそ」オーバーレイの表示時間後に消し始める
         setTimeout(() => {
             if (welcomeOverlay) {
-                welcomeOverlay.classList.add('hidden');
-                // アニメーション終了後に要素を完全に削除（任意）
+                welcomeOverlay.classList.add('hidden'); // フェードアウト開始
                 welcomeOverlay.addEventListener('transitionend', () => {
-                    welcomeOverlay.remove();
-                }, { once: true }); // イベントリスナーは一度だけ実行
+                    welcomeOverlay.remove(); // オーバーレイをDOMから削除
+                    body.classList.add('visible'); // ★オーバーレイが消えた後、bodyを表示
+                }, { once: true });
+            } else {
+                // welcomeOverlayが見つからない場合（HTMLのミスなど）でもbodyを表示
+                body.classList.add('visible');
             }
-        }, 2000); // 2000ミリ秒（2秒）後に消える
+        }, welcomeDisplayDuration);
+
     } else {
-        // 2回目以降の訪問時は、最初からオーバーレイを非表示にする
+        // 2回目以降の訪問時（リロードや他ページからの遷移も含む）
+        // オーバーレイをすぐに非表示にしてDOMから削除
         if (welcomeOverlay) {
-            welcomeOverlay.classList.add('hidden');
-            welcomeOverlay.remove(); // DOMからも削除
+            welcomeOverlay.remove();
         }
+        // ★bodyをすぐに表示
+        body.classList.add('visible');
     }
 });

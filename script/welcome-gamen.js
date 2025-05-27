@@ -1,4 +1,4 @@
-// js/welcome.js
+// js/welcome-gamen.js
 
 document.addEventListener('DOMContentLoaded', () => {
     const welcomeOverlay = document.getElementById('welcome-overlay');

@@ -4,52 +4,7 @@ body {
     margin: 0; /* ブラウザのデフォルトマージンをリセット */
     padding: 0; /* ブラウザのデフォルトパディングをリセット */
     overflow-y: scroll; /* これを追加：縦方向のスクロールバーを常に表示 */
-     visibility: hidden; /* body内のコンテンツを初期状態で非表示にする */
-    opacity: 0;       /* 初期状態で透明にする */
-    transition: opacity 0.5s ease-in-out; /* フェードインのアニメーション */
 }
-body.visible {
-    visibility: visible; /* コンテンツを表示可能にする */
-    opacity: 1;          /* フェードインで表示 */
-}
-
-/* ★ここから追加 */
-/* --- ようこそオーバーレイのスタイル --- */
-#welcome-overlay {
-    position: fixed; /* 画面に固定 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white; /* ヘッダーと同じ明るい水色 */
-    display: flex; /* コンテンツを中央に配置するためにFlexboxを使用 */
-    justify-content: center; /* 水平方向の中央揃え */
-    align-items: center; /* 垂直方向の中央揃え */
-    z-index: 9999; /* 他の要素より手前に表示 */
-    opacity: 1; /* 初期状態では完全に表示 */
-    transition: opacity 1s ease-out, visibility 1s ease-out; /* フェードアウトのアニメーション */
-    visibility: visible; /* 初期状態では表示 */
-}
-
-#welcome-overlay.hidden {
-    opacity: 0; /* 透明にして見えなくする */
-    visibility: hidden; /* DOMからも見えなくする（イベントブロックを防ぐ） */
-}
-
-.welcome-content {
-    text-align: center;
-    color: black;
-    font-size: 3em; /* 大きな文字で「ようこそ」を表示 */
-    font-weight: bold;
-    /* 必要に応じて、さらに装飾を追加 */
-}
-
-.welcome-content p {
-    font-size: 0.5em; /* サブタイトル */
-    font-weight: normal;
-    margin-top: 10px;
-}
-/* --- ようこそオーバーレイのスタイルここまで --- */
 /* コンテンツを中央に寄せるための共通コンテナスタイル */
 .container {
     max-width: 1000px; /* メインコンテンツの幅 (960px + 左右padding 20px*2 = 1000px) に合わせる */

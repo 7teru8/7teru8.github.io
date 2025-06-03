@@ -241,27 +241,89 @@ footer .container {
     margin: 0;        /* デフォルトのマージンをリセット */
 }
 
+/* 各更新項目に対する一般的なスタイル (作ったものなど) */
 .update-item {
     margin-bottom: 10px; /* 各更新項目の下に少し余白 */
-    font-size: 1.1em; /* 少し文字を大きく */
+    font-size: 1.1em;    /* 少し文字を大きく */
 }
 
-.update-item:last-child {
-    margin-bottom: 0; /* 最後の項目は下に余白なし */
+/* 日記の項目（最新記事と一覧リンクが横並びになる部分）のスタイル */
+.update-item-diary {
+    display: flex;       /* Flexboxを使って中身を横並びにする */
+    align-items: baseline; /* テキストのベースラインを揃える */
+    flex-wrap: wrap;     /* 画面が狭くなったら折り返す */
+    margin-bottom: 10px; /* 他の項目との余白 */
+    font-size: 1.1em;    /* 文字の大きさ */
 }
 
-.update-item .update-category {
-    font-weight: bold; /* カテゴリ名を太字に */
-    color: #555; /* カテゴリ名を少し暗めの色に */
-    margin-right: 5px; /* カテゴリ名の右に少し余白 */
+.update-item-diary .update-category {
+    flex-shrink: 0;   /* 幅が狭くなっても縮まない */
+    font-weight: bold;
+    color: #555;
+    margin-right: 8px; /* 「日記:」の右の余白 */
 }
 
-.update-item a {
-    color: #6384cd; /* リンクの色をナビバーなどと合わせる */
+.update-item-diary .latest-diary-link {
+    flex-grow: 1; /* 残りのスペースをできるだけ占める */
+    text-decoration: none;
+    color: #6384cd;
+    white-space: nowrap; /* タイトルが途中で改行しないように */
+    overflow: hidden;    /* はみ出たテキストは非表示 */
+    text-overflow: ellipsis; /* はみ出たら...で表示 */
+    margin-right: 15px; /* 最新日記と「一覧は」の間の余白 */
+}
+
+.update-item-diary .latest-diary-link:hover {
+    text-decoration: underline;
+}
+
+.update-item-diary .diary-list-label {
+    flex-shrink: 0; /* 幅が狭くなっても縮まない */
+    color: #555;
+    margin-left: auto; /* 左側の要素と離れて、右端に寄るようにする */
+    margin-right: 5px; /* 「一覧は」の右の余白 */
+}
+
+.update-item-diary .diary-list-link {
+    flex-shrink: 0; /* 幅が狭くなっても縮まない */
+    text-decoration: none;
+    color: #6384cd;
+}
+
+.update-item-diary .diary-list-link:hover {
+    text-decoration: underline;
+}
+
+/* 「作ったもの」の項目が日記の項目の直後に続く場合の余白調整 */
+.update-item-diary + .update-item {
+    margin-top: 10px; /* 上に10pxの余白を追加 */
+}
+
+/* リンク自体の共通スタイル */
+.update-item a,
+.update-item-diary a {
+    color: #6384cd;      /* リンクの色を統一 */
     text-decoration: none; /* デフォルトの下線をなくす */
 }
 
-.update-item a:hover {
+.update-item a:hover,
+.update-item-diary a:hover {
     text-decoration: underline; /* ホバー時に下線を表示 */
 }
 /*ここまで*/
+/* style/index.css の一番下に追加 */
+
+/* --- mainタグ内の一般的なリンクスタイル --- */
+main a {
+    color: #6384cd; /* サイトのメインカラーに統一 */
+    text-decoration: none; /* デフォルトの下線をなくす */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* ホバー時の滑らかな変化 */
+}
+
+main a:hover {
+    color: #4a68af; /* ホバー時は少し濃いめの青 */
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+/* 特定の要素内のリンクでこのスタイルが適用されない場合は、より詳細なセレクタで上書きします */
+/* 例: .blog-post-list h3 a { color: #333; } など、既に特定の色が設定されているもの */

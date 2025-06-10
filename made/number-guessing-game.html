@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>制作-てるのホームページ</title>
+    <title>数字当てゲーム-てるのホームページ</title>
     <link rel="stylesheet" href="../style/index.css">
 </head>
 
 <body>
     <header>
         <div class="container">
-            <a id="title" href="../index.html">
+            <a href="../index.html" id="title">
                 <h1>てるのホームページ</h1>
             </a>
             <nav>
@@ -19,21 +19,25 @@
                     <li><a href="../myprofile.html">自己紹介</a></li>
                     <li><a href="../diary.html">日記</a></li>
                     <li><a href="../works.html">作ったもの</a></li>
-                    <li><a href="../contact.html">お問い合わせ</a></li>
+                    <li><a href="../contact.html">問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <article class="blog-article-detail">
-            <h2>制作</h2>
-            <p class="post-date">2025年5月13日(火)</p>
-            <div class="article-content">
-                <p>今日から本格的に製作を始めた。不安感。資格勉強大変。就活大変。</p>
+        <section>
+            <h2>数字当てゲーム</h2>
+            <p>1から100までの数字を当ててみよう！</p>
+            <div>
+                <label for="guessInput">あなたの予想：</label>
+                <input type="number" id="guessInput" min="1" max="100">
+                <button id="submitGuess">予想を送信</button>
             </div>
-            <p><a href="../diary.html">← 日記一覧に戻る</a></p>
-        </article>
+            <p id="message"></p>
+            <p id="attempts"></p>
+            <button id="resetGame" style="display:none;">もう一度プレイ</button>
+        </section>
     </main>
 
     <footer>
@@ -41,6 +45,8 @@
             <p>&copy; 2025 てる</p>
         </div>
     </footer>
+
+    <script src=""></script>
 </body>
 
 </html>

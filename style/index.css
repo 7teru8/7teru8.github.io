@@ -186,43 +186,43 @@ footer .container {
 }
 /*問い合わせここまで*/
 /* --- ブログ記事一覧（diary.html）のスタイル --- */
-.blog-post-list article {
+.diary-post-list article {
     margin-bottom: 40px; /* 各記事の概要の下に余白 */
     padding-bottom: 20px; /* ボーダーとコンテンツの間に余白 */
     border-bottom: 1px dashed #ccc; /* ★ここを追記または変更：各記事を点線で区切る線 */
 }
 
-.blog-post-list article:last-child {
+.diary-post-list article:last-child {
     border-bottom: none; /* ★ここを追記または変更：一番最後の記事の下線は消す */
     margin-bottom: 0; /* 一番最後の記事の下余白も調整 */
     padding-bottom: 0;
 }
 
 /* その他の既存のブログ記事リストのスタイルはそのまま維持 */
-.blog-post-list h3 {
+.diary-post-list h3 {
     margin-top: 0;
     margin-bottom: 10px;
 }
 
-.blog-post-list h3 a {
+.diary-post-list h3 a {
     color: #333;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: bold;
 }
 
-.blog-post-list h3 a:hover {
+.diary-post-list h3 a:hover {
     text-decoration: underline;
     color: #6384cd;
 }
 
-.blog-post-list .post-date {
+.diary-post-list .post-date {
     font-size: 0.9em;
     color: #666;
     margin-bottom: 15px;
 }
 
-.blog-post-list .read-more {
+.diary-post-list .read-more {
     display: inline-block;
     margin-top: 15px;
     color: #6384cd;
@@ -230,10 +230,59 @@ footer .container {
     font-weight: bold;
 }
 
-.blog-post-list .read-more:hover {
+.diary-post-list .read-more:hover {
     text-decoration: underline;
 }
 /*diaryここまで*/
+/* --- 作ったもの(works.html)のスタイル --- */
+.works-post-list article {
+    margin-bottom: 40px; /* 各記事の概要の下に余白 */
+    padding-bottom: 20px; /* ボーダーとコンテンツの間に余白 */
+    border-bottom: 1px dashed #ccc; /* ★ここを追記または変更：各記事を点線で区切る線 */
+}
+
+.works-post-list article:last-child {
+    border-bottom: none; /* ★ここを追記または変更：一番最後の記事の下線は消す */
+    margin-bottom: 0; /* 一番最後の記事の下余白も調整 */
+    padding-bottom: 0;
+}
+
+/* その他の既存のブログ記事リストのスタイルはそのまま維持 */
+.works-post-list h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.works-post-list h3 a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.works-post-list h3 a:hover {
+    text-decoration: underline;
+    color: #6384cd;
+}
+
+.works-post-list .post-date {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.works-post-list .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: #6384cd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.works-post-list .read-more:hover {
+    text-decoration: underline;
+}
+/*worksここまで*/
 /*lastupdate-indexのとこのやつ*/
 #latest-updates ul {
     list-style: none; /* デフォルトのリストマーカーを非表示に */
@@ -326,4 +375,4 @@ main a:hover {
 }
 
 /* 特定の要素内のリンクでこのスタイルが適用されない場合は、より詳細なセレクタで上書きします */
-/* 例: .blog-post-list h3 a { color: #333; } など、既に特定の色が設定されているもの */
+/* 例: .diary-post-list h3 a { color: #333; } など、既に特定の色が設定されているもの */

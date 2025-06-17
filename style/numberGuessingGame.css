@@ -1,10 +1,10 @@
 /* style/game.css */
 
 /* ゲーム全体を囲むセクションのスタイル */
-section {
+#number-guessing-game {
     background-color: #f0f8ff;
     /* 薄い水色 */
-    padding: 30px;
+    padding: 30px 30px 40px 30px;
     margin: 20px auto;
     /* 中央寄せ */
     max-width: 600px;
@@ -18,14 +18,14 @@ section {
 }
 
 /* タイトルのスタイル */
-section h2 {
+#number-guessing-game h2 {
     color: #333;
     font-size: 2em;
     margin-bottom: 20px;
 }
 
 /* 説明文のスタイル */
-section p {
+#number-guessing-game p {
     color: #555;
     font-size: 1.1em;
     line-height: 1.6;
@@ -33,7 +33,7 @@ section p {
 }
 
 /* 入力とボタンを囲むdivのスタイル */
-section div {
+#number-guessing-game div {
     margin: 25px 0;
 }
 
@@ -70,7 +70,7 @@ section div {
     /* マウスオーバーでカーソルをポインターにする */
     transition: background-color 0.3s ease;
     /* ホバー時のアニメーション */
-    margin-left: 10px;
+    margin: 20px 0 0 10px;
 }
 
 #submitGuess:hover,
@@ -80,7 +80,7 @@ section div {
 }
 
 /* メッセージ表示部分のスタイル */
-#message {
+#number-guessing-game #message {
     font-size: 1.3em;
     font-weight: bold;
     color: #e63946;

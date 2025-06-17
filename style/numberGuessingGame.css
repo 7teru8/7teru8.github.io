@@ -1,0 +1,99 @@
+/* style/game.css */
+
+/* ゲーム全体を囲むセクションのスタイル */
+section {
+    background-color: #f0f8ff;
+    /* 薄い水色 */
+    padding: 30px;
+    margin: 20px auto;
+    /* 中央寄せ */
+    max-width: 600px;
+    /* 最大幅 */
+    border-radius: 10px;
+    /* 角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 影を付ける */
+    text-align: center;
+    /* 中央揃え */
+}
+
+/* タイトルのスタイル */
+section h2 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* 説明文のスタイル */
+section p {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6;
+    padding: 0 0 25px 0;
+}
+
+/* 入力とボタンを囲むdivのスタイル */
+section div {
+    margin: 25px 0;
+}
+
+/* 入力欄のスタイル */
+#guessInput {
+    padding: 12px 15px;
+    font-size: 1.2em;
+    border: 2px solid #a8dadc;
+    /* 薄い青の枠線 */
+    border-radius: 5px;
+    width: 150px;
+    /* 幅を調整 */
+    text-align: center;
+    outline: none;
+    /* フォーカス時のアウトラインを消す */
+}
+
+#guessInput:focus {
+    border-color: #457b9d;
+    /* フォーカス時の枠線の色 */
+}
+
+/* ボタンのスタイル */
+#submitGuess,
+#resetGame {
+    background-color: #457b9d;
+    /* 青系の色 */
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* マウスオーバーでカーソルをポインターにする */
+    transition: background-color 0.3s ease;
+    /* ホバー時のアニメーション */
+    margin-left: 10px;
+}
+
+#submitGuess:hover,
+#resetGame:hover {
+    background-color: #1d3557;
+    /* ホバー時の色 */
+}
+
+/* メッセージ表示部分のスタイル */
+#message {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #e63946;
+    /* ヒントやエラーメッセージの色 */
+    min-height: 1.5em;
+    /* コンテンツがないときに高さが変わりにくいように */
+    margin-top: 15px;
+}
+
+/* 試行回数表示部分のスタイル */
+#attempts {
+    font-size: 1em;
+    color: #777;
+    margin-top: 10px;
+}
+

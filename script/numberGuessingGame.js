@@ -21,7 +21,11 @@ function initializeGame() {
     // (Math.random() * 100)は0以上100未満
     // Math.floor(...)で小数点以下を切り捨てて整数に
     // + 1 で1から100の範囲に調整
-    randomNumber = Math.floor(Math.random() * 100) + 1;
+    //randomNumber = Math.floor(Math.random() * 100) + 1;    
+    // // -99999から99999までのランダムな整数を生成します
+    const minNum = -99999;
+    const maxNum = 99999;
+    randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
     attempts = 0; // 試行回数をリセット
     messageDisplay.textContent = ''; // メッセージをクリア
     attemptsDisplay.textContent = ''; // 試行回数表示をクリア
@@ -38,8 +42,8 @@ function checkGuess() {
     const userGuess = parseInt(guessInput.value); // 入力された値を数値に変換
 
     // 入力が有効な数字かチェック
-    if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-        messageDisplay.textContent = '1から100までの有効な数字を入力してください。';
+    if (isNaN(userGuess) || userGuess < -99999 || userGuess > 99999) {
+        messageDisplay.textContent = '-99999から99999までの有効な数字を入力してください。';
         return; // 無効な入力なら処理を中断
     }
 

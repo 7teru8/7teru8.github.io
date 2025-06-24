@@ -18,7 +18,7 @@
 }
 
 /* タイトルのスタイル */
-#number-guessing-game h2 {
+#number-guessing-game h1 {
     color: #333;
     font-size: 2em;
     margin-bottom: 20px;

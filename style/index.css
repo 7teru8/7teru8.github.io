@@ -246,6 +246,18 @@ footer .container {
     margin-bottom: 0; /* 一番最後の記事の下余白も調整 */
     padding-bottom: 0;
 }
+/* --- プライバシーポリシーのスタイル --- */
+.privacy-policy article {
+    margin-bottom: 40px; /* 各記事の概要の下に余白 */
+    padding-bottom: 20px; /* ボーダーとコンテンツの間に余白 */
+    border-bottom: 1px dashed #ccc; /* ★ここを追記または変更：各記事を点線で区切る線 */
+}
+
+.privacy-policy article:last-child {
+    border-bottom: none; /* ★ここを追記または変更：一番最後の記事の下線は消す */
+    margin-bottom: 0; /* 一番最後の記事の下余白も調整 */
+    padding-bottom: 0;
+}
 
 /* その他の既存のブログ記事リストのスタイルはそのまま維持 */
 .works-post-list h3 {

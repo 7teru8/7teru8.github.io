@@ -1,0 +1,38 @@
+/*背景*/
+#shiritorihaikei{
+    width: 720px;
+    height: 405px;
+    background-color: black;
+    margin-left: auto; 
+    margin-right: auto;
+
+    position: relative;
+}
+/*↑背景↑*/
+/*スタートボタン*/
+#startbutton{
+    background-color: thistle;
+    width: 160px;
+    height: 160px;
+
+    position: absolute;
+    margin-left: 280px;
+    margin-top: 122.5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#startbutton p{
+
+    text-align: center;
+    
+    
+
+}
+/*スタートボタン↑*/
+/*ボタンを非表示にするためのクラス*/
+.hidden{
+    display: none; /* 要素を画面から完全に消す（領域も残らない） */
+}
+/*ボタンを非表示↑*/

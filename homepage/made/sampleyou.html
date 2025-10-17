@@ -1,0 +1,545 @@
+<!--ピクロスサンプル-->
+<!--<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nazotoki-てるのホームページ</title>
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/sampleyou.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" id="title">
+                <h6>てるのホームページ</h6>
+            </a>
+            <nav>
+                <ul id="navi">
+                    <li><a href="../myprofile.html">自己紹介</a></li>
+                    <li><a href="../diary.html">日記</a></li>
+                    <li><a href="../works.html">作ったもの</a></li>
+                    <li><a href="../contact.html">問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+<body>
+
+<div id="puzzle">
+
+</div>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 てる</p>
+        </div>
+    </footer>
+
+    <script src="../script/sampleyou.js"></script>
+</body>
+
+</html>-->
+
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>5x5 ピクロス - 学習用サンプル</title>
+<style>
+  :root{
+    --bg: #0b0f13;
+    --panel: #0f1720;
+    --accent: #26f0ff;
+    --muted: #8aa0b0;
+    --cell: #0b1220;
+    --filled: linear-gradient(135deg,#26f0ff 0%, #007ab8 100%);
+    --size: 52px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:#edf8ff;
+    font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    display:flex;
+    min-height:100vh;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 20px;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:920px;
+  }
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .title{
+    font-size:20px;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .controls{display:flex;gap:8px;align-items:center}
+  button.ctrl{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    padding:8px 10px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  button.ctrl:hover{border-color:var(--accent); color:var(--accent)}
+
+  .picross{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    grid-template-rows: 90px 1fr;
+    gap:8px;
+    align-items:start;
+  }
+
+  .corner{
+    grid-column:1/2;
+    grid-row:1/2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    font-size:13px;
+    background:transparent;
+  }
+
+  /* 列ヒント（上） */
+  .col-hints{
+    grid-column:2/3;
+    grid-row:1/2;
+    display:grid;
+    place-items:end stretch;
+    padding-left:6px;
+  }
+  .col-hints .columns {
+    display:grid;
+    grid-auto-flow:column;
+    gap:4px;
+    justify-content:start;
+  }
+  .col {
+    width:var(--size);
+    height:90px; /* 上に並べるヒントの高さ */
+    display:flex;
+    flex-direction:column-reverse; /* 下揃えで表示する（一般的なピクロス表示） */
+    justify-content:flex-start;
+    align-items:center;
+    padding:4px 2px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .col .hint-num{ margin:2px 0; color:var(--muted); font-weight:700; }
+
+  /* 行ヒント（左） */
+  .row-hints{
+    grid-column:1/2;
+    grid-row:2/3;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding-top:6px;
+  }
+  .row {
+    height:var(--size);
+    width:90px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    padding-right:8px;
+    color:var(--muted);
+    font-weight:700;
+  }
+  .row .hint-num{ font-size:13px; color:var(--muted) }
+
+  /* ゲーム盤 */
+  .grid {
+    grid-column:2/3;
+    grid-row:2/3;
+    padding:6px;
+    background:transparent;
+  }
+  .cells {
+    display:grid;
+    gap:6px;
+    /* columns will be set dynamically from JS */
+  }
+  .cell {
+    width:var(--size);
+    height:var(--size);
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.06);
+    background:var(--cell);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    color:rgba(255,255,255,0.9);
+    font-weight:800;
+    position:relative;
+    font-size:18px;
+  }
+  .cell.filled{
+    background:var(--filled);
+    box-shadow:0 8px 20px rgba(0,122,184,0.18), inset 0 -6px 18px rgba(0,0,0,0.35);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .cell.marked{
+    background:transparent;
+    color:#ff6b6b;
+  }
+
+  .help{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .win-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
+    z-index:100;
+  }
+  .win-card{
+    background:var(--panel);
+    padding:24px;
+    border-radius:12px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.04);
+  }
+  .win-card h2{ color:var(--accent); margin:0 0 8px 0 }
+  .muted-small{ color:var(--muted); font-size:13px; margin-top:6px }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">ピクロス（学習用） — 5×5 デモ</div>
+      <div class="controls">
+        <button class="ctrl" id="btn-reset">リセット</button>
+        <button class="ctrl" id="btn-reveal">解答表示</button>
+        <button class="ctrl" id="btn-clear-local">進捗クリア</button>
+      </div>
+    </header>
+
+    <div class="picross" id="picross">
+      <div class="corner">左クリック: 塗る / 右クリック: ×（印）</div>
+
+      <div class="col-hints">
+        <div class="columns" id="col-hints"></div>
+      </div>
+
+      <div class="row-hints" id="row-hints"></div>
+
+      <div class="grid">
+        <div class="cells" id="cells"></div>
+      </div>
+    </div>
+
+    <div class="help">
+      ・右クリックでマーク（×）を付けられます。<br>
+      ・ローカル保存（ブラウザ）で進捗を保持します。表示を変えたい場合はソース内の <code>solution</code> を編集してください。
+    </div>
+  </div>
+
+  <div class="win-overlay" id="win">
+    <div class="win-card">
+      <h2>クリア！🎉</h2>
+      <div class="muted-small">問題を正しく塗りつぶしました。お疲れさま！</div>
+      <div style="margin-top:12px;">
+        <button class="ctrl" id="win-close">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/*
+  使い方・注意:
+  - GRID_SIZE を変えると盤の大きさを変更できます（ただし solution 配列も合わせて変更してください）。
+  - 左クリックで塗りつぶし(toggle)、右クリックでマーク（X）を切り替えます。
+  - 解答（solution）は下の配列で定義。
+*/
+
+const GRID_SIZE = 5;
+
+/* ====== ここが正解パターン（0/1） ======
+   solution[row][col] の形で記述する。
+   5x5 の例を入れてあります。変更して練習してみてください。
+*/
+const solution = [
+  [0,1,1,1,0],
+  [1,0,1,1,1],
+  [1,1,1,1,1],
+  [1,1,1,0,1],
+  [1,1,0,1,1]
+];
+/* ======================================= */
+
+if (solution.length !== GRID_SIZE || solution.some(r => r.length !== GRID_SIZE)) {
+  console.error("solution 配列のサイズが GRID_SIZE と一致していません。");
+}
+
+/* セル状態の定義:
+   0 = 空
+   1 = 塗り（filled）
+   2 = マーク（X）
+*/
+let state = Array.from({length: GRID_SIZE}, () => Array(GRID_SIZE).fill(0));
+
+const cellsEl = document.getElementById('cells');
+const colHintsEl = document.getElementById('col-hints');
+const rowHintsEl = document.getElementById('row-hints');
+const winEl = document.getElementById('win');
+
+function saveProgress() {
+  try {
+    localStorage.setItem('picross-progress', JSON.stringify(state));
+  } catch(e){ console.warn("保存できませんでした:", e) }
+}
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('picross-progress');
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed) && parsed.length === GRID_SIZE) {
+      state = parsed;
+      return true;
+    }
+  } catch(e){ console.warn("読み込み失敗", e) }
+  return false;
+}
+function clearProgress() {
+  localStorage.removeItem('picross-progress');
+  state = Array.from({length: GRID_SIZE}, () => Array(GRID_SIZE).fill(0));
+  renderGrid();
+}
+
+/* ヒントを正解配列から生成する関数 */
+function computeRuns(arr){
+  const runs = [];
+  let cnt = 0;
+  for (let v of arr) {
+    if (v) cnt++;
+    else {
+      if (cnt>0) { runs.push(cnt); cnt=0; }
+    }
+  }
+  if (cnt>0) runs.push(cnt);
+  return runs; // 空配列は「何も無い」＝空表示
+}
+function computeRowHints(sol) {
+  return sol.map(row => computeRuns(row));
+}
+function computeColHints(sol) {
+  const cols = [];
+  for (let c=0;c<GRID_SIZE;c++){
+    const col = [];
+    for (let r=0;r<GRID_SIZE;r++) col.push(sol[r][c]);
+    cols.push(computeRuns(col));
+  }
+  return cols;
+}
+
+/* ヒントのレンダリング */
+function renderHints() {
+  // 列ヒント（上）
+  colHintsEl.innerHTML = '';
+  const colHints = computeColHints(solution);
+  const columnsWrap = document.createElement('div');
+  columnsWrap.className = 'columns';
+  columnsWrap.style.gridTemplateColumns = `repeat(${GRID_SIZE}, ${getComputedStyle(document.documentElement).getPropertyValue('--size') || '52px'})`;
+  for (let c=0;c<GRID_SIZE;c++){
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col';
+    const hints = colHints[c];
+    if (hints.length === 0) {
+      // 空の時は何も表示しない（空白）
+      const span = document.createElement('div');
+      span.className = 'hint-num';
+      span.textContent = '';
+      colDiv.appendChild(span);
+    } else {
+      for (let n of hints) {
+        const span = document.createElement('div');
+        span.className = 'hint-num';
+        span.textContent = n;
+        colDiv.appendChild(span);
+      }
+    }
+    columnsWrap.appendChild(colDiv);
+  }
+  colHintsEl.appendChild(columnsWrap);
+
+  // 行ヒント（左）
+  rowHintsEl.innerHTML = '';
+  const rowHints = computeRowHints(solution);
+  for (let r=0;r<GRID_SIZE;r++){
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'row';
+    const hints = rowHints[r];
+    // 右寄せで表示するため、そのまま横並びで追加
+    if (hints.length === 0) {
+      const span = document.createElement('span');
+      span.className = 'hint-num';
+      span.textContent = '';
+      rowDiv.appendChild(span);
+    } else {
+      // 複数個の数字を表示
+      for (let n of hints) {
+        const span = document.createElement('span');
+        span.className = 'hint-num';
+        span.textContent = n;
+        rowDiv.appendChild(span);
+      }
+    }
+    rowHintsEl.appendChild(rowDiv);
+  }
+}
+
+/* グリッド（セル）を作る */
+function buildGrid() {
+  cellsEl.innerHTML = '';
+  cellsEl.style.gridTemplateColumns = `repeat(${GRID_SIZE}, var(--size))`;
+  for (let r=0;r<GRID_SIZE;r++){
+    for (let c=0;c<GRID_SIZE;c++){
+      const div = document.createElement('div');
+      div.className = 'cell';
+      div.id = `cell-${r}-${c}`;
+      div.dataset.r = r; div.dataset.c = c;
+      // クリック
+      div.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFill(r,c);
+      });
+      // 右クリックでマーク（×）
+      div.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        toggleMark(r,c);
+      });
+      cellsEl.appendChild(div);
+    }
+  }
+}
+
+/* 状態レンダリング */
+function renderGrid(){
+  for (let r=0;r<GRID_SIZE;r++){
+    for (let c=0;c<GRID_SIZE;c++){
+      const el = document.getElementById(`cell-${r}-${c}`);
+      const s = state[r][c];
+      el.classList.remove('filled','marked');
+      el.textContent = '';
+      if (s === 1) {
+        el.classList.add('filled');
+      } else if (s === 2) {
+        el.classList.add('marked');
+        el.textContent = '✕';
+      }
+    }
+  }
+}
+
+/* 塗りつぶしトグル（左クリック） */
+function toggleFill(r,c){
+  const cur = state[r][c];
+  if (cur === 1) state[r][c] = 0;
+  else state[r][c] = 1;
+  // 塗りにしたらマークを解除
+  if (state[r][c] === 1) {
+    // nothing else
+  }
+  renderGrid();
+  saveProgress();
+  checkWin();
+}
+
+/* マークトグル（右クリック） */
+function toggleMark(r,c){
+  const cur = state[r][c];
+  if (cur === 2) state[r][c] = 0;
+  else state[r][c] = 2;
+  // マークにしたら塗りは消す
+  if (state[r][c] === 2) {
+    // nothing else
+  }
+  renderGrid();
+  saveProgress();
+}
+
+/* 勝利判定 */
+function checkWin(){
+  for (let r=0;r<GRID_SIZE;r++){
+    for (let c=0;c<GRID_SIZE;c++){
+      const need = solution[r][c];
+      const have = state[r][c] === 1 ? 1 : 0; // マークは塗りではない
+      if (need !== have) return false;
+    }
+  }
+  // 全て一致したら win
+  showWin();
+  return true;
+}
+
+function showWin(){
+  winEl.style.display = 'flex';
+}
+
+/* 初期化 */
+function init(){
+  renderHints();
+  buildGrid();
+  const loaded = loadProgress();
+  if (loaded) {
+    renderGrid();
+  } else {
+    renderGrid();
+  }
+}
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  state = Array.from({length: GRID_SIZE}, () => Array(GRID_SIZE).fill(0));
+  renderGrid();
+  saveProgress();
+});
+document.getElementById('btn-reveal').addEventListener('click', () => {
+  // 解答表示（塗りにする）
+  for (let r=0;r<GRID_SIZE;r++) for (let c=0;c<GRID_SIZE;c++) state[r][c] = solution[r][c] ? 1 : 0;
+  renderGrid();
+});
+document.getElementById('btn-clear-local').addEventListener('click', () => {
+  if (confirm("ローカル保存をクリアして初期化しますか？")) {
+    clearProgress();
+  }
+});
+document.getElementById('win-close').addEventListener('click', () => { winEl.style.display = 'none'; });
+
+init();
+</script>
+</body>
+</html>

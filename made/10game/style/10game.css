@@ -1,10 +1,134 @@
+/* ベースのスタイル */
 body {
-    background: #eee;
-    text-align: center;
+    background: #f0f0f0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: sans-serif;
-  }
-  canvas {
+}
+
+/* ヘッダーとフッターのコンテナ */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* --- ゲームと説明欄を横並びにする設定 --- */
+.game-container {
+    display: flex;
+    justify-content: center; /* 中央寄せ */
+    align-items: flex-start; /* 上端を揃える */
+    gap: 20px;               /* Canvasと説明の間の隙間 */
+    padding: 20px;
+    flex-grow: 1;            /* 画面中央付近に配置 */
+}
+
+/* スキル説明欄 */
+.skill-info {
+    width: 200px;
     background: white;
-    margin-top: 10px;
+    padding: 20px;
+    border-radius: 8px;
     border: 1px solid #aaa;
-  }
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.skill-info h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.skill-card {
+    margin-bottom: 15px;
+}
+
+.key-cap {
+    display: inline-block;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-bottom: 3px solid #999;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.skill-card p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+.game-rule {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    background: #fafafa;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Canvasのスタイル（以前の良さを継承） */
+canvas {
+    background: white;
+    display: block;
+    border: 4px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 95vw;
+    height: auto;
+    /* margin: 20px auto はコンテナ側で制御するため削除 */
+}
+
+/* --- レスポンシブ対応：画面が狭い時 --- */
+@media (max-width: 750px) {
+    .game-container {
+        flex-direction: column-reverse; /* Canvasを上、説明を下に */
+        align-items: center;
+    }
+
+    .skill-info {
+        width: 440px; /* Canvasの幅に合わせる */
+        max-width: 90vw;
+    }
+}
+
+/*  ---  スコア表記  --- */
+.score-rank {
+    margin-top: 20px;
+    padding: 10px;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.score-rank h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+}
+
+.score-rank ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.score-rank li {
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.score-rank span {
+    font-weight: bold;
+    color: #000;
+}
+

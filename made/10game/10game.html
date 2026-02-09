@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>10 Game</title>
-<link rel="stylesheet" href="style/10game.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Game</title>
+    <link rel="stylesheet" href="../../style/index.css">
+    <link rel="stylesheet" href="style/10game.css">
 </head>
 <body>
-<canvas id="game" width="450" height="720"></canvas>
+    <header>
+        <div class="container">
+            <a href="../../index.html" id="title">
+                <h6>てるのホームページ</h6>
+            </a>
+            <nav>
+                <ul id="navi">
+                    <li><a href="../../myprofile.html">自己紹介</a></li>
+                    <li><a href="../../diary.html">日記</a></li>
+                    <li><a href="../../works.html">作ったもの</a></li>
+                    <li><a href="../../contact.html">問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main class="game-container">
+        <aside class="skill-info">
+            <h3>SKILLS</h3>
+            <div class="skill-card">
+                <span class="key-cap">A</span>
+                <p><strong>Refresh</strong><br>数字をすべてランダムに入れ替えます。</p>
+            </div>
+            <div class="skill-card">
+                <span class="key-cap">S</span>
+                <p><strong>Delete</strong><br>発動後、好きなマスを1つ選んで消せます。</p>
+            </div>
+            <div class="game-rule">
+                <p>【ルール】<br>ドラッグで囲んだ合計が10になれば数字が消えます。空白マスを飛び越えて囲むことも可能です！</p>
+            </div>
+            <div class="score-rank">
+            <h4>SCORE RANK</h4>
+                <ul>
+                    <li><span>5000～</span>：すごい</li>
+                    <li><span>2500～4999</span>：普通</li>
+                    <li><span>～2499</span>：まだまだ</li>
+                </ul>
+            </div>
 
-<script src="script/10game.js"></script>
+        </aside>
+        
+
+        <canvas id="game" width="450" height="720"></canvas>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 てる</p>
+        </div>
+    </footer>
+    <script src="script/10game.js"></script>
 </body>
 </html>

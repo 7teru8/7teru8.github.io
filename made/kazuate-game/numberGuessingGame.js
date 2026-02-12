@@ -22,7 +22,7 @@ function initializeGame() {
     // Math.floor(...)で小数点以下を切り捨てて整数に
     // + 1 で1から100の範囲に調整
     //randomNumber = Math.floor(Math.random() * 100) + 1;    
-    // // -99999から99999までのランダムな整数を生成します
+    // // 0から10000までのランダムな整数を生成します
     const minNum = 0;
     const maxNum = 10000;
     randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
@@ -42,8 +42,8 @@ function checkGuess() {
     const userGuess = parseInt(guessInput.value); // 入力された値を数値に変換
 
     // 入力が有効な数字かチェック
-    if (isNaN(userGuess) || userGuess < -99999 || userGuess > 99999) {
-        messageDisplay.textContent = '-99999から99999までの有効な数字を入力してください。';
+    if (isNaN(userGuess) || userGuess < 0 || userGuess > 10000) {
+        messageDisplay.textContent = '0から10000までの有効な数字を入力してください。';
         return; // 無効な入力なら処理を中断
     }
 

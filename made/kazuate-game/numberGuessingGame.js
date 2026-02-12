@@ -23,8 +23,8 @@ function initializeGame() {
     // + 1 で1から100の範囲に調整
     //randomNumber = Math.floor(Math.random() * 100) + 1;    
     // // -99999から99999までのランダムな整数を生成します
-    const minNum = -99999;
-    const maxNum = 99999;
+    const minNum = 0;
+    const maxNum = 10000;
     randomNumber = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
     attempts = 0; // 試行回数をリセット
     messageDisplay.textContent = ''; // メッセージをクリア
